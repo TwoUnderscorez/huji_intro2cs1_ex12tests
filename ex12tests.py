@@ -1547,7 +1547,7 @@ class Ex12Tests(unittest.TestCase):
                     self.skipTest('Random board tests are work in progress')
                 else:
                     actual = max_score_paths(**tc["input"])
-                    self.assertEqual(tc['expected'], actual)
+                    self.assertListEqualWithoutOrder(tc['expected'], actual)
 
 
 def version_check():
