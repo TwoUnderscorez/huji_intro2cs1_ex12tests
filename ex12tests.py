@@ -1574,7 +1574,7 @@ def main():
     print('#'*80)
     if version_check():
         print('Up to date, running tests...')
-        print('This should not take more than 5 seconds...')
+        print('This should not take more than 4 seconds (10sec tops)...')
         print('In diffs, - is expected, + is actual')
         unittest.main()
         print("If you want to add a test or a test has failed when it shouldn't have, please contact us at yutkin@cs.huji.ac.il;amdavidson@cs.huji.ac.il or open an issue or a pull request here: https://github.com/TwoUnderscorez/huji_intro2cs1_ex12tests")
