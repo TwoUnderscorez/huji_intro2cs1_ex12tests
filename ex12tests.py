@@ -967,7 +967,21 @@ class Ex12Tests(unittest.TestCase):
                     "words": ["QUEEN", "LED", "SITE", "KIT", "WIELD"]
                 },
                 "expected": [[(1, 3), (2, 3), (2, 2), (1, 1), (2, 1)]],
-            }
+            },
+            {
+                "name": "word within a word (quick/quickly)",
+                "input": {
+                    "board": [
+                        ["QU", "E", "CKL", "?"],
+                        ["?", "I", "C", "Y"],
+                        ["CKLY", "CK", "K", "?"],
+                        ["?", "?", "?", "?"],
+                    ],
+                    "words": ["QUICK", "QUICKLY"]
+                },
+                "expected": [[(0, 0), (1, 1), (1, 2), (2, 2)],
+                             [(0, 0), (1, 1), (0, 2), (1, 3)]],
+            },
         ]
         random_board_cases = [
             {
