@@ -22,6 +22,10 @@ import urllib.request
 
 
 class Ex12Tests(unittest.TestCase):
+    def __init__(self, methodName: str = ...) -> None:
+        super().__init__(methodName=methodName)
+        self.maxDiff = None
+
     def assertListEqualWithoutOrder(self, list1, list2, *args, **kwargs):
         self.assertListEqual(sorted(
             list1), sorted(list2), *args, **kwargs)
