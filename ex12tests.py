@@ -967,7 +967,9 @@ class Ex12Tests(unittest.TestCase):
                     "words": ["QUEEN", "LED", "SITE", "KIT", "WIELD"]
                 },
                 "expected": [[(1, 3), (2, 3), (2, 2), (1, 1), (2, 1)]],
-            },
+            }
+        ]
+        random_board_cases = [
             {
                 "name": "random board 1",
                 "input": {
@@ -1543,11 +1545,14 @@ class Ex12Tests(unittest.TestCase):
         ]
         for tc in testcases:
             with self.subTest(tc['name']):
-                if 'random' in tc['name']:
-                    self.skipTest('Random board tests are work in progress')
-                else:
-                    actual = max_score_paths(**tc["input"])
-                    self.assertListEqualWithoutOrder(tc['expected'], actual)
+                actual = max_score_paths(**tc["input"])
+                self.assertListEqualWithoutOrder(tc['expected'], actual)
+        for tc in random_board_cases:
+            with self.subTest(tc['name']):
+                actual = max_score_paths(**tc["input"])
+                self.assertEqual(len(tc['expected']), len(actual))
+                # work in progress...
+                # self.assertListEqualWithoutOrder(tc['expected'], actual)
 
 
 def version_check():
@@ -1574,7 +1579,7 @@ def main():
     print('#'*80)
     if version_check():
         print('Up to date, running tests...')
-        print('This should not take more than 4 seconds (10sec tops)...')
+        print('This should not take more than 5 seconds (10sec tops)...')
         print('In diffs, - is expected, + is actual')
         unittest.main()
         print("If you want to add a test or a test has failed when it shouldn't have, please contact us at yutkin@cs.huji.ac.il;amdavidson@cs.huji.ac.il or open an issue or a pull request here: https://github.com/TwoUnderscorez/huji_intro2cs1_ex12tests")
