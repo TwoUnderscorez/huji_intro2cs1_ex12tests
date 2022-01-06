@@ -948,7 +948,7 @@ class Ex12Tests(unittest.TestCase):
                     "board": [
                         ["QU", "E", "W", "L"],
                         ["I", "E", "T", "R"],
-                        ["E", "N", "E", "D"],
+                        ["E", "N", "Z", "D"],
                         ["A", "M", "L", "J"],
                     ],
                     "words": ["QUEEN", "SITE", "KIT", "WIELD"]
@@ -1607,6 +1607,9 @@ def main():
 VERSION = 3
 VERSION_CHECK = 'https://raw.githubusercontent.com/TwoUnderscorez/huji_intro2cs1_ex12tests/master/VERSION'
 CHANGELOG = '''Changelog:
+Version 2:
+ - Fixed:
+    - "multiple paths to the same word and same length" in test_max_score, there were multiple correct outputs
 Version 1:
 Added:
  - Tests for all 4 methods
