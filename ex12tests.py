@@ -1600,7 +1600,7 @@ def main():
         print("If you want to add a test or a test has failed when it shouldn't have, please contact us at yutkin@cs.huji.ac.il;amdavidson@cs.huji.ac.il or open an issue or a pull request here: https://github.com/TwoUnderscorez/huji_intro2cs1_ex12tests")
     else:
         print("We've updated the tests file, please download the new one form here")
-        print('https://raw.githubusercontent.com/TwoUnderscorez/huji_intro2cs1_ex12tests/master/tests.py')
+        print('https://raw.githubusercontent.com/TwoUnderscorez/huji_intro2cs1_ex12tests/master/ex12tests.py')
 
 
 # .data
