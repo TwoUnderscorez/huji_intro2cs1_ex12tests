@@ -1605,14 +1605,16 @@ def main():
 
 # .data
 # ### Tests infrastructure data
-VERSION = 3
+VERSION = 4
 VERSION_CHECK = 'https://raw.githubusercontent.com/TwoUnderscorez/huji_intro2cs1_ex12tests/master/VERSION'
 CHANGELOG = '''Changelog:
-Version 2:
+Version 4:
  - Fixed:
     - "multiple paths to the same word and same length" in test_max_score, there were multiple correct outputs, now there is only one.
     - Some tests had board cell values with more than three letters, which according to the updated instructions is not valid. Those tests have been fixed to comply with the new rules.
-Version 1:
+- Changed:
+   - I apparently forgot to change the version from 3 to 1 after copying all the update related code from the previous tests. There is no going back, so I guess we're starting from 3.
+Version 3:
 Added:
  - Tests for all 4 methods
 '''
