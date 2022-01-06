@@ -607,16 +607,17 @@ class Ex12Tests(unittest.TestCase):
                 "name": "palindrome should be counted twice",
                 "input": {
                     "n": 7,
-                    "board": [["?", "Z", "?", "?"],
-                              ["?", "AB", "XYX", "Z"],
-                              ["?", "C", "BA", "?"],
-                              ["XYX", "?", "?", "?"]],
+                    "board": [["X", "Z", "Y", "X"],
+                              ["Y", "AB", "X", "Z"],
+                              ["X", "C", "BA", "?"],
+                              ["?", "?", "?", "?"]],
                     "words": ['ZABCBAZ', 'ZBACABZ', 'XYXCXYX']
                 },
                 "expected": [[(0, 1), (1, 1), (2, 1), (2, 2), (1, 3)],
                              [(1, 3), (2, 2), (2, 1), (1, 1), (0, 1)],
-                             [(3, 0), (2, 1), (1, 2)],
-                             [(1, 2), (2, 1), (3, 0)]]
+                             [(0, 0), (1, 0), (2, 0), (2, 1),
+                              (1, 2), (0, 2), (0, 3)],
+                             [(0, 3), (0, 2), (1, 2), (2, 1), (2, 0), (1, 0), (0, 0)]]
             },
             {
                 "name": "happy flow single word",
@@ -665,14 +666,14 @@ class Ex12Tests(unittest.TestCase):
             {
                 "name": "happy flow word inside single cell",
                 "input": {
-                    "n": 5,
+                    "n": 2,
                     "board": [
                         ["P", "E", "W", "L"],
                         ["I", "V", "T", "R"],
                         ["E", "N", "E", "D"],
-                        ["A", "M", "L", "QUEEN"],
+                        ["A", "M", "L", "QU"],
                     ],
-                    "words": ["QUEEN", "LED", "SITE", "KIT", "WIELD"]
+                    "words": ["QU"]
                 },
                 "expected": [[(3, 3)]],
             },
@@ -1594,7 +1595,7 @@ def main():
     if version_check():
         print('Up to date, running tests...')
         print('This should not take more than 5 seconds (10sec tops)...')
-        print('In diffs, - is expected, + is actual')
+        print('In diffs, first(-) is expected, second(+) is actual')
         unittest.main()
         print("If you want to add a test or a test has failed when it shouldn't have, please contact us at yutkin@cs.huji.ac.il;amdavidson@cs.huji.ac.il or open an issue or a pull request here: https://github.com/TwoUnderscorez/huji_intro2cs1_ex12tests")
     else:
@@ -1609,7 +1610,8 @@ VERSION_CHECK = 'https://raw.githubusercontent.com/TwoUnderscorez/huji_intro2cs1
 CHANGELOG = '''Changelog:
 Version 2:
  - Fixed:
-    - "multiple paths to the same word and same length" in test_max_score, there were multiple correct outputs
+    - "multiple paths to the same word and same length" in test_max_score, there were multiple correct outputs, now there is only one.
+    - Some tests had board cell values with more than three letters, which according to the updated instructions is not valid. Those tests have been fixed to comply with the new rules.
 Version 1:
 Added:
  - Tests for all 4 methods
