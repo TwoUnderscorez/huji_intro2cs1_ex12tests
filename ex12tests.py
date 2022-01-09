@@ -12,6 +12,9 @@ https://github.com/TwoUnderscorez/huji-intro2cs1-ex12
 # so that everyone can benifit from your contribution.                         #
 ################################################################################
 
+from unittest.loader import TestLoader
+from unittest.runner import TextTestRunner
+from unittest.suite import TestSuite
 from ex12_utils import is_valid_path, find_length_n_paths, find_length_n_words, \
     max_score_paths
 import unittest
@@ -19,6 +22,23 @@ from gzip import decompress
 from base64 import b85decode
 import pickle
 import urllib.request
+import sys
+
+
+class MyTextResult(unittest.TextTestResult):
+    def startTest(self, test):
+        if self.showAll:
+            self.stream.write(self.getDescription(test))
+            self.stream.write(' ')
+            self.stream.flush()
+
+    def addSuccess(self, test):
+        self.testsRun += 1
+        self.stream.flush()
+
+
+class MyTextRunner(unittest.TextTestRunner):
+    pass
 
 
 class Ex12Tests(unittest.TestCase):
@@ -29,6 +49,12 @@ class Ex12Tests(unittest.TestCase):
     def assertListEqualWithoutOrder(self, list1, list2, *args, **kwargs):
         self.assertListEqual(sorted(
             list1), sorted(list2), *args, **kwargs)
+
+    def dot(self, lf=False):
+        sys.__stderr__.write('.')
+        if lf:
+            sys.__stderr__.write('\n')
+        sys.__stderr__.flush()
 
     def test_is_valid_path(self):
         DEFAULT_BOARD = [
@@ -150,6 +176,8 @@ class Ex12Tests(unittest.TestCase):
             with self.subTest(tc['name']):
                 actual = is_valid_path(**tc["input"])
                 self.assertEqual(tc['expected'], actual)
+                self.dot()
+        self.dot(True)
 
     def test_find_length_n_paths(self):
         BOARD1 = [["I", "S", "W", "L"],
@@ -600,6 +628,8 @@ class Ex12Tests(unittest.TestCase):
             with self.subTest(tc['name']):
                 actual = find_length_n_paths(**tc["input"])
                 self.assertListEqualWithoutOrder(tc['expected'], actual)
+                self.dot()
+        self.dot(True)
 
     def test_find_length_n_words(self):
         testcases = [
@@ -927,6 +957,8 @@ class Ex12Tests(unittest.TestCase):
             with self.subTest(tc['name']):
                 actual = find_length_n_words(**tc["input"])
                 self.assertListEqualWithoutOrder(tc['expected'], actual)
+                self.dot()
+        self.dot(True)
 
     def test_max_score(self):
         testcases = [
@@ -1562,12 +1594,15 @@ class Ex12Tests(unittest.TestCase):
             with self.subTest(tc['name']):
                 actual = max_score_paths(**tc["input"])
                 self.assertListEqualWithoutOrder(tc['expected'], actual)
+                self.dot()
         for tc in random_board_cases:
             with self.subTest(tc['name']):
                 actual = max_score_paths(**tc["input"])
                 self.assertEqual(len(tc['expected']), len(actual))
+                self.dot()
                 # work in progress...
                 # self.assertListEqualWithoutOrder(tc['expected'], actual)
+        self.dot(True)
 
 
 def version_check():
@@ -1596,7 +1631,9 @@ def main():
         print('Up to date, running tests...')
         print('This should not take more than 5 seconds (10sec tops)...')
         print('In diffs, first(-) is expected, second(+) is actual')
-        unittest.main()
+        TextTestRunner(verbosity=3, resultclass=MyTextResult).run(
+            TestLoader().loadTestsFromTestCase(Ex12Tests))
+        # unittest.main()
         print("If you want to add a test or a test has failed when it shouldn't have, please contact us at yutkin@cs.huji.ac.il;amdavidson@cs.huji.ac.il or open an issue or a pull request here: https://github.com/TwoUnderscorez/huji_intro2cs1_ex12tests")
     else:
         print("We've updated the tests file, please download the new one form here")
