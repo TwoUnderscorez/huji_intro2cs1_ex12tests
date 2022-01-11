@@ -1650,7 +1650,7 @@ def main():
 
 # .data
 # ### Tests infrastructure data
-VERSION = 5
+VERSION = 6
 VERSION_CHECK = 'https://raw.githubusercontent.com/TwoUnderscorez/huji_intro2cs1_ex12tests/master/VERSION'
 CHANGELOG = '''Changelog:
 Version 6:
