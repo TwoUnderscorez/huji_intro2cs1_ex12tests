@@ -983,7 +983,7 @@ class Ex12Tests(unittest.TestCase):
                     "board": [
                         ["QU", "E", "W", "L"],
                         ["I", "E", "T", "R"],
-                        ["E", "N", "Z", "D"],
+                        ["Z", "N", "Z", "D"],
                         ["A", "M", "L", "J"],
                     ],
                     "words": ["QUEEN", "SITE", "KIT", "WIELD"]
@@ -1653,6 +1653,9 @@ def main():
 VERSION = 5
 VERSION_CHECK = 'https://raw.githubusercontent.com/TwoUnderscorez/huji_intro2cs1_ex12tests/master/VERSION'
 CHANGELOG = '''Changelog:
+Version 6:
+Fixed:
+ - Fixed "multiple paths to the same word and same length" hopfully for the last time
 Version 5:
 Added:
  - Testing indicators for each subtest
